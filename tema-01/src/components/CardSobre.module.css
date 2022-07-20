@@ -1,0 +1,12 @@
+.cardSobre {
+  display: flex;
+  justify-content: center;
+  width: 900px;
+  height: 400px;
+  color: #666;
+  margin: 0 auto;
+}
+
+p {
+  margin-top: 50px;
+}

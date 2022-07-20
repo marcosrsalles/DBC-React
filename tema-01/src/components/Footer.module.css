@@ -1,0 +1,16 @@
+footer {
+  padding: 25px;
+}
+.nav {
+  background-color: red;
+}
+address {
+  color: #fff;
+
+  background-color: red;
+}
+
+ul li a {
+  color: #fff;
+  margin-bottom: 5px;
+}
