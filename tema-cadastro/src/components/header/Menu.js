@@ -1,23 +1,15 @@
 import { Item } from "./Item";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 function Menu() {
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    if (!token) {
-      navigate("/");
-    }
-  }, []);
+  const { auth } = useContext(AuthContext);
 
   const { handleLogout } = useContext(AuthContext);
   return (
     <nav>
       <ul>
-        {!token ? (
+        {!auth ? (
           <>
             <Item name="Home" url="/" />
             <Item name="Cadastrar Usuario" url="/usuarios" />
@@ -29,7 +21,7 @@ function Menu() {
           </>
         )}
       </ul>
-      {token && <button onClick={handleLogout}>Logout</button>}
+      {auth && <button onClick={handleLogout}>Logout</button>}
     </nav>
   );
 }

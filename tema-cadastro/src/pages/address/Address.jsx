@@ -6,14 +6,6 @@ import * as Yup from "yup";
 import axios from "axios";
 
 function Address() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-    }
-  }, []);
-
   async function onBlurCep(event, setFieldValue) {
     let { value } = event.target;
     const cep = value?.replace(/[^0-9]/g, "");
