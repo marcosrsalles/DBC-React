@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { postRequest, putRequest } from "./../../../api";
 import axios from "axios";
 import { PeopleContext } from "../../../context/PeopleContext";
-import { Card, Button } from "./Address.styled";
+import { Card, Button, Title } from "./Address.styled";
 
 function AddressFormComponent({ edit, idEndereco, idPessoa }) {
   const { address, redirectToList } = useContext(PeopleContext);
@@ -59,6 +59,7 @@ function AddressFormComponent({ edit, idEndereco, idPessoa }) {
   };
   return (
     <Card>
+      <Title>Informe os dados do seu endereço</Title>
       <Formik
         enableReinitialize={true}
         initialValues={{

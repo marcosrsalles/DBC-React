@@ -5,6 +5,7 @@ export const Card = styled.div`
   align-items: center;
   justify-content: center;
   width: 1200px;
+  flex-direction: column;
   form {
     display: flex;
     flex-direction: column;
@@ -35,6 +36,7 @@ export const Card = styled.div`
       height: 48px;
       width: 116px;
       margin: 0 auto;
+      margin-top: 30px;
     }
 
     select {
@@ -65,5 +67,12 @@ export const Button = styled.button`
   border-radius: 8px;
   height: 48px;
   width: 116px;
+
   margin: 0 auto;
+`;
+
+export const Title = styled.h1`
+  font-size: 28px;
+  color: #6d6868;
+  margin-bottom: 40px;
 `;
