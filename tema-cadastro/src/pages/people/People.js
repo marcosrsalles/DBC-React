@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
-import { apiDbc } from "../../api";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FlatList from "../../components/flatList/flatList";
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { PeopleContext } from "../../context/PeopleContext";
+import { Container } from "../../components/Container.styled";
+import { Button } from "./People.styled";
+import { ToastContainer } from "react-toastify";
 
 function People() {
-  const { setLoading } = useContext(AuthContext);
-  const [people, setPeople] = useState([]);
+  const { getPeople, people } = useContext(PeopleContext);
+
   const navigate = useNavigate();
 
   const setup = async () => {
-    setLoading(false);
-    try {
-      const { data } = await apiDbc.get(
-        "/pessoa?pagina=0&tamanhoDasPaginas=20"
-      );
-      setPeople(data.content);
-    } catch (error) {
-      console.log(error);
-    }
-    setLoading(false);
+    getPeople();
   };
 
   useEffect(() => {
@@ -32,11 +25,12 @@ function People() {
   };
 
   return (
-    <div>
-      <button onClick={handleCreate}>Cadastrar</button>
-      <h1>Lista de pessoas</h1>
+    <Container>
+      <Button onClick={handleCreate}>Cadastrar</Button>
+
       <FlatList array={people} />
-    </div>
+      <ToastContainer />
+    </Container>
   );
 }
 

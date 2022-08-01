@@ -9,12 +9,13 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import NotFound from "./pages/notFound/NotFound";
 import PeopleForm from "./pages/people/PeopleForm";
+import PeopleDetail from "./pages/people/PeopleDetail";
 
 function Routers() {
   const { auth } = useContext(AuthContext);
   return (
     <BrowserRouter>
-      <Header />
+      {auth ? <Header /> : ""}
       <Routes>
         {!auth ? (
           <>
@@ -27,11 +28,17 @@ function Routers() {
             <Route path="/pessoa" element={<People />} />
             <Route path="/criar-pessoa" element={<PeopleForm />} />
             <Route path="/editar-pessoa/:id" element={<PeopleForm />} />
+            <Route path="/detalhar-pessoa/:id" element={<PeopleDetail />} />
+            <Route path="/adicionar-endereco/:id" element={<Address />} />
+            <Route
+              path="/editar-endereco/:id"
+              element={<Address edit={true} />}
+            />
           </>
         )}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

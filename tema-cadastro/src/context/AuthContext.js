@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
-import { apiDbc } from "../api";
+import { setToken, postRequest } from "../api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AuthContext = createContext();
 
@@ -10,7 +12,7 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      apiDbc.defaults.headers.common["Authorization"] = token;
+      setToken(token);
       setAuth(true);
     }
     setLoading(false);
@@ -18,9 +20,9 @@ function AuthProvider({ children }) {
 
   async function handleLogin(values) {
     try {
-      const { data } = await apiDbc.post("/auth", values);
+      const data = await postRequest("/auth", values);
       localStorage.setItem("token", data);
-      apiDbc.defaults.headers.common["Authorization"] = data;
+      setToken(data);
       setAuth(true);
       window.location.href = "/endereco";
     } catch (error) {
@@ -30,15 +32,16 @@ function AuthProvider({ children }) {
 
   function handleLogout() {
     localStorage.removeItem("token");
-    apiDbc.defaults.headers.common["Authorization"] = undefined;
+    setToken(undefined);
     setAuth(false);
     window.location.href = "/";
   }
 
   async function handleSignUp(values) {
     try {
-      await apiDbc.post("/auth/create/", values);
-      alert("Usuário criado com sucesso!");
+      await postRequest("/auth/create/", values);
+      toast("Usuário criado com sucesso!");
+      <ToastContainer />;
       window.location.href = "/";
     } catch (error) {
       alert("Erro ao fazer cadastro!");

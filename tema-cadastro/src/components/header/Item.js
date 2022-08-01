@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { ItemLink, ItemContainer } from "./Item.styled";
 
-export function Item({ name, url }) {
+export function Item({ name, url, img }) {
   return (
-    <li>
-      <Link to={url}> {name}</Link>
-    </li>
+    <ItemContainer>
+      <ItemLink to={url}>
+        {img}
+        {name}
+      </ItemLink>
+    </ItemContainer>
   );
 }

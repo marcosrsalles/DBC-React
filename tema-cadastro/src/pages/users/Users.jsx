@@ -2,6 +2,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Card, Input, Button, FormStyled, Title } from "./User.syled";
 
 const SignupSchema = Yup.object().shape({
   login: Yup.string()
@@ -17,8 +18,8 @@ const SignupSchema = Yup.object().shape({
 function Users() {
   const { handleSignUp } = useContext(AuthContext);
   return (
-    <div>
-      <h1>Entre na sua conta!</h1>
+    <Card>
+      <Title>Crie sua conta</Title>
       <Formik
         initialValues={{ login: "", senha: "" }}
         validationSchema={SignupSchema}
@@ -28,21 +29,23 @@ function Users() {
       >
         {({ errors, touched }) => {
           return (
-            <Form>
-              <Field name="login" placeholder="Digite seu nome" />
+            <FormStyled>
+              <Input name="login" placeholder="Digite seu nome" />
               {errors.login && touched.login ? <div>{errors.login}</div> : null}
-              <Field
+              <Input
                 name="senha"
                 type="password"
                 placeholder="Digite sua senha"
               />
               {errors.senha && touched.senha ? <div>{errors.senha}</div> : null}
-              <button type="submit">Cadastrar</button>
-            </Form>
+              <div>
+                <Button type="submit">Cadastrar</Button>
+              </div>
+            </FormStyled>
           );
         }}
       </Formik>
-    </div>
+    </Card>
   );
 }
 
