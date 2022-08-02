@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const Background = styled.div`
+  background: #363740;
+  width: 100vw;
+  height: 100vh;
+`;
+
 export const Card = styled.div`
   background: #ffffff;
   flex-direction: column;
@@ -121,6 +127,7 @@ export const Button = styled.button`
   border-radius: 8px;
   height: 48px;
   width: 316px;
+  cursor: pointer;
 `;
 
 export const SignUp = styled.div`
@@ -141,4 +148,10 @@ export const ItemLink = styled(Link)`
   letter-spacing: 0.20000000298023224px;
   text-align: center;
   color: #3751ff;
+`;
+
+// estilos dos erros
+
+export const Erros = styled.div`
+  color: red;
 `;

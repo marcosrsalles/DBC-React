@@ -62,6 +62,7 @@ export const Button = styled.button`
   margin-top: 24px;
   margin-bottom: 32px;
   justify-content: center;
+  align-items: center;
   font-family: "Mulish";
   font-style: normal;
   font-weight: 600;
@@ -75,4 +76,10 @@ export const Button = styled.button`
   width: 316px;
   cursor: pointer;
   margin: 0 auto;
+`;
+
+// estilos dos erros
+
+export const Erros = styled.div`
+  color: red;
 `;

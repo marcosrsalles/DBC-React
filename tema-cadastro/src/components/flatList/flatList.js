@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { PeopleContext } from "../../context/PeopleContext";
 import { Card, Row, RowHeader, Button, Backgroud } from "./FlatList.styled";
-import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 

@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Users from "./pages/users/Users";
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
 import Address from "./pages/address/Address";
 import People from "./pages/people/People";
 import { useContext } from "react";
@@ -36,9 +35,9 @@ function Routers() {
             />
           </>
         )}
-        <Route path="*" element={<NotFound />} />
+
+        {<Route path="*" element={<NotFound />} />}
       </Routes>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

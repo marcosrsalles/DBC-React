@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
       localStorage.setItem("token", data);
       setToken(data);
       setAuth(true);
-      window.location.href = "/endereco";
+      window.location.href = "/pessoa";
     } catch (error) {
       alert("Erro ao fazer login!");
     }
@@ -40,9 +40,10 @@ function AuthProvider({ children }) {
   async function handleSignUp(values) {
     try {
       await postRequest("/auth/create/", values);
-      toast("Usuário criado com sucesso!");
-      <ToastContainer />;
-      window.location.href = "/";
+      toast.success("Usuário criado com sucesso!");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 5000);
     } catch (error) {
       alert("Erro ao fazer cadastro!");
     }

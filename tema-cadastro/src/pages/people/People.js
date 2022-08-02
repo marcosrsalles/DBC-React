@@ -4,7 +4,7 @@ import FlatList from "../../components/flatList/flatList";
 import { useContext } from "react";
 import { PeopleContext } from "../../context/PeopleContext";
 import { Container } from "../../components/Container.styled";
-import { Button } from "./People.styled";
+import { Button, CardButton } from "./People.styled";
 import { ToastContainer } from "react-toastify";
 
 function People() {
@@ -26,7 +26,9 @@ function People() {
 
   return (
     <Container>
-      <Button onClick={handleCreate}>Cadastrar</Button>
+      <CardButton>
+        <Button onClick={handleCreate}>Cadastrar</Button>
+      </CardButton>
 
       <FlatList array={people} />
       <ToastContainer />

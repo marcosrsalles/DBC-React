@@ -84,44 +84,45 @@ function AddressFormComponent({ edit, idEndereco, idPessoa }) {
           return (
             <Form>
               <>
-                <label>CEP</label>
+                <label>CEP*</label>
                 <Field
                   name="cep"
                   placeholder="Digite seu CEP"
+                  required
                   onBlur={(event) => onBlurCep(event, setFieldValue)}
                 />
               </>
               <>
-                <label>Logradouro</label>
-                <Field name="logradouro" />
+                <label>Logradouro *</label>
+                <Field required name="logradouro" />
               </>
               <>
-                <label>Número</label>
-                <Field name="numero" placeholder="Digite o numero" />
+                <label>Número *</label>
+                <Field required name="numero" placeholder="Digite o numero" />
               </>
               <>
-                <label>Complemento</label>
-                <Field name="complemento" />
+                <label>Complemento *</label>
+                <Field required name="complemento" />
               </>
               <>
                 <label>Bairro</label>
-                <Field name="bairro" />
+                <Field required name="bairro" />
               </>
               <>
-                <label>Cidade</label>
-                <Field name="cidade" />
+                <label>Cidade *</label>
+                <Field required name="cidade" />
               </>
               <>
-                <label>Estado</label>
-                <Field name="estado" />
+                <label>Estado *</label>
+                <Field required name="estado" />
               </>
               <>
-                <label>Pais</label>
-                <Field name="pais" />
+                <label>Pais *</label>
+                <Field required name="pais" />
               </>
               <>
-                <label>Tipo</label>
-                <Field name="tipo" as="select">
+                <label>Tipo *</label>
+                <Field required name="tipo" as="select">
                   <option value="COMERCIAL">Comercial</option>
                   <option value="RESIDENCIAL">Residencial</option>
                 </Field>

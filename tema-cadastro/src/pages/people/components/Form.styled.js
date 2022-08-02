@@ -6,6 +6,7 @@ export const Card = styled.div`
   justify-content: center;
   width: 1200px;
   margin-top: 30px;
+  height: 100vh;
   form {
     display: flex;
     flex-direction: column;
@@ -38,4 +39,9 @@ export const Card = styled.div`
       margin: 0 auto;
     }
   }
+`;
+
+export const Label = styled.label`
+  color: white;
+  padding: 5px 15px;
 `;

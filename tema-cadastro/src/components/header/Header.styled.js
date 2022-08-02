@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const MenuList = styled.div`
-  height: 100vh;
-  width: 300px;
-  margin-top: 35px;
+  height: auto;
+  width: 250px;
+  padding-top: 35px;
+  background: #363740;
 `;
 
 export const Title = styled.div`

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { PeopleContext } from "./../../../context/PeopleContext";
-import { Container } from "../../../components/Container.styled";
+import { Card, Li, Button, CardButton } from "./PeopleDetail.styled.js";
 
 function PeopleDetailComponent() {
   const { people, handleDeleteAddress, redirectToEditAddress } =
@@ -8,37 +8,43 @@ function PeopleDetailComponent() {
   const user = people && people[0];
 
   return (
-    <Container>
-      <div>Detalhes</div>
-      Nome: {user?.nome}
-      E-mail: {user?.email}
-      Cpf: {user?.cpf}
-      Data de nascimento: {user?.dataNascimento}
+    <Card>
+      <ul>Detalhes</ul>
+      <Li>Nome: {user?.nome}</Li>
+      <Li>E-mail: {user?.email}</Li>
+      <Li>Cpf: {user?.cpf}</Li>
+      <Li>Data de nascimento: {user?.dataNascimento}</Li>
       <div>Endereços</div>
       {user &&
         user.enderecos.map((endereco) => {
           return (
             <div>
-              Cidade: {endereco.cidade}
-              Cep: {endereco.cep}
-              Complemento: {endereco.complemento}
-              Estado: {endereco.estado}
-              Logradouro: {endereco.logradouro}
-              Número: {endereco.numero}
-              Pais: {endereco.pais}
-              Tipo: {endereco.tipo}
-              <button onClick={() => handleDeleteAddress(endereco.idEndereco)}>
-                Deletar endereço
-              </button>
-              <button
-                onClick={() => redirectToEditAddress(endereco.idEndereco)}
-              >
-                Atualizar endereço
-              </button>
+              <ul>
+                <Li>Cidade: {endereco.cidade}</Li>
+                <Li> Cep: {endereco.cep}</Li>
+                <Li>Complemento: {endereco.complemento}</Li>
+                <Li>Estado: {endereco.estado}</Li>
+                <Li>Logradouro: {endereco.logradouro}</Li>
+                <Li> Número: {endereco.numero}</Li>
+                <Li>Pais: {endereco.pais}</Li>
+                <Li>Tipo: {endereco.tipo}</Li>
+              </ul>
+              <CardButton>
+                <Button
+                  onClick={() => handleDeleteAddress(endereco.idEndereco)}
+                >
+                  Deletar endereço
+                </Button>
+                <Button
+                  onClick={() => redirectToEditAddress(endereco.idEndereco)}
+                >
+                  Atualizar endereço
+                </Button>
+              </CardButton>
             </div>
           );
         })}
-    </Container>
+    </Card>
   );
 }
 

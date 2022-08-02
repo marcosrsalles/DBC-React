@@ -2,8 +2,13 @@ import styled from "styled-components";
 import { MenuButton } from "@szhsin/react-menu";
 
 export const Backgroud = styled.div`
+  width: 1300px;
   background: #e5e5e5;
-  height: 100vh;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  border-radius: 5px;
 `;
 
 export const Card = styled.div`
@@ -46,13 +51,14 @@ export const Row = styled.div`
 
   border-bottom: 1.5px solid #dfe0eb;
 
-  padding: 18px 0;
+  padding: 18px 5px;
   :hover {
     background: #3751ff17;
     cursor: pointer;
   }
   p {
     width: 300px;
+    padding: 18px 5px;
   }
 `;
 

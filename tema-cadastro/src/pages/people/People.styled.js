@@ -22,3 +22,8 @@ export const Button = styled.button`
   cursor: pointer;
   margin: 0 auto;
 `;
+
+export const CardButton = styled.div`
+  padding-top: 20px;
+  /* background-color: #e5e5e5; */
+`;

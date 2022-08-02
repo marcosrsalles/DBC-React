@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Card = styled.div`
   width: 1200px;
   margin: 0 auto;
+`;
+
+export const CardConteint = styled.div`
+  color: white;
   display: flex;
   flex-direction: column;
-  /* background: #e5e5e5; */
-  padding-top: 15px;
-  padding-bottom: 30px;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin-top: 30vh;
 `;

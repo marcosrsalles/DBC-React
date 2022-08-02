@@ -4,7 +4,7 @@ import { PeopleContext } from "../../../context/PeopleContext";
 import MaskedInput from "react-text-mask";
 import { maskCpf, maskDate, validCpf } from "../../../utils/mask";
 import moment from "moment";
-import { Card } from "./Form.styled";
+import { Card, Label } from "./Form.styled";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,6 +24,7 @@ function FormComponent(isUpdate) {
       return;
     }
     handleAddPeople(values);
+    toast("Criado com sucesso");
   };
 
   return (
@@ -58,6 +59,7 @@ function FormComponent(isUpdate) {
       >
         {(props) => (
           <form onSubmit={props.handleSubmit}>
+            <Label htmlFor="nome">Nome *</Label>
             <input
               type="text"
               onChange={props.handleChange}
@@ -65,8 +67,9 @@ function FormComponent(isUpdate) {
               value={props.values.nome}
               name="nome"
               placeholder="Nome"
+              required
             />
-
+            <Label htmlFor="dataNascimento">Data de nascimento *</Label>
             <MaskedInput
               mask={maskDate}
               onChange={props.handleChange}
@@ -74,8 +77,9 @@ function FormComponent(isUpdate) {
               value={props.values.dataNascimento}
               name="dataNascimento"
               placeholder="Data de nascimento"
+              required
             />
-
+            <Label htmlFor="cpf">CPF *</Label>
             <MaskedInput
               mask={maskCpf}
               onChange={props.handleChange}
@@ -83,8 +87,9 @@ function FormComponent(isUpdate) {
               value={props.values.cpf}
               name="cpf"
               placeholder="CPF"
+              required
             />
-
+            <Label htmlFor="email">E-mail *</Label>
             <input
               type="email"
               onChange={props.handleChange}
@@ -92,10 +97,11 @@ function FormComponent(isUpdate) {
               value={props.values.email}
               name="email"
               placeholder="E-mail"
+              required
             />
             {props.errors.name && <div id="feedback">{props.errors.name}</div>}
             <button type="submit">
-              {isUpdate ? "Atualizar" : "Cadastrar"}
+              {isUpdate.isUpdate ? "Atualizar" : "Cadastrar"}
             </button>
           </form>
         )}

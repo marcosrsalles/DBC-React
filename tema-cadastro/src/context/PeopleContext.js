@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 import { postRequest, deleteRequest, putRequest, getRequest } from "../api";
 
 const PeopleContext = createContext();
@@ -24,6 +25,7 @@ const PeopleProvider = ({ children }) => {
 
   const handleAddPeople = async (values) => {
     await postRequest("/pessoa", values);
+    toast.success("Usuario criado com sucesso");
     window.location.href = "/pessoa";
   };
 
@@ -69,9 +71,9 @@ const PeopleProvider = ({ children }) => {
     window.location.href = `/editar-endereco/${idEndereco}`;
   };
 
-  const redirectToList = () =>{
+  const redirectToList = () => {
     window.location.href = `/pessoa`;
-  }
+  };
 
   return (
     <PeopleContext.Provider
