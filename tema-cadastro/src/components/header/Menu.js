@@ -28,6 +28,11 @@ function Menu() {
               name="Pessoa"
               url="/pessoa"
             />
+            <Item
+              img={<img src={pessoas} alt="" srcset="" />}
+              name="Contatos"
+              url="/contatos"
+            />
           </>
         )}
       </ul>

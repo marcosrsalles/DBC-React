@@ -7,6 +7,7 @@ const PeopleContext = createContext();
 const PeopleProvider = ({ children }) => {
   const [people, setPeople] = useState([]);
   const [address, setAddress] = useState([]);
+  const [contact, setContact] = useState([]);
 
   const getPeopleById = async (id) => {
     const data = await getRequest(`/pessoa/lista-completa?idPessoa=${id}`);
@@ -18,9 +19,14 @@ const PeopleProvider = ({ children }) => {
     setPeople(data.content);
   };
 
-  const getAddressById = async (idEndereco) => {
-    const data = await getRequest(`/endereco/${idEndereco}`);
+  const getAddressById = async (idContato) => {
+    const data = await getRequest(`/contato/${idContato}`);
     setAddress(data);
+  };
+
+  const getContactById = async (idEndereco) => {
+    const data = await getRequest(`/endereco/${idEndereco}`);
+    setContact(data);
   };
 
   const handleAddPeople = async (values) => {
@@ -34,11 +40,20 @@ const PeopleProvider = ({ children }) => {
     getPeople();
   };
 
+  const handleDeleteContato = async (idContato) => {
+    await deleteRequest(`/contato/${idContato}`);
+    redirectToList();
+  };
+
   const handleUpdate = async (people) => {
     await putRequest(`/pessoa/${people.id}`, people);
     window.location.href = "/pessoa";
   };
 
+  const handleUpdateContact = async (idContato) => {
+    await putRequest(`/contato/${contact.id}`, contact);
+    window.location.href = "/pessoa";
+  };
   const handleDetails = async (idPessoa) => {
     const data = await getRequest(
       `/pessoa/lista-completa?idPessoa=${idPessoa}`
@@ -71,6 +86,14 @@ const PeopleProvider = ({ children }) => {
     window.location.href = `/editar-endereco/${idEndereco}`;
   };
 
+  const redirectToAddContact = (idPessoa) => {
+    window.location.href = `/adicionar-contato/${idPessoa}`;
+  };
+
+  const redirectToEditContato = (idContato) => {
+    window.location.href = `/editar-contato/${idContato}`;
+  };
+
   const redirectToList = () => {
     window.location.href = `/pessoa`;
   };
@@ -84,6 +107,7 @@ const PeopleProvider = ({ children }) => {
         redirecToUpdate,
         people,
         address,
+        contact,
         getPeople,
         getPeopleById,
         redirectToDetails,
@@ -94,6 +118,11 @@ const PeopleProvider = ({ children }) => {
         redirectToEditAddress,
         getAddressById,
         redirectToList,
+        redirectToAddContact,
+        getContactById,
+        handleDeleteContato,
+        handleUpdateContact,
+        redirectToEditContato,
       }}
     >
       {children}

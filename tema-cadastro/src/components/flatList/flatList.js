@@ -11,6 +11,7 @@ const FlatList = ({ array }) => {
     redirecToUpdate,
     redirectToDetails,
     redirectToAddAddress,
+    redirectToAddContact,
   } = useContext(PeopleContext);
 
   return (
@@ -44,6 +45,9 @@ const FlatList = ({ array }) => {
               </MenuItem>
               <MenuItem onClick={() => redirectToAddAddress(item.idPessoa)}>
                 Cadastrar endereço
+              </MenuItem>
+              <MenuItem onClick={() => redirectToAddContact(item.idPessoa)}>
+                Cadastrar Contato
               </MenuItem>
             </Menu>
           </Row>

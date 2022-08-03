@@ -3,8 +3,13 @@ import { PeopleContext } from "./../../../context/PeopleContext";
 import { Card, Li, Button, CardButton } from "./PeopleDetail.styled.js";
 
 function PeopleDetailComponent() {
-  const { people, handleDeleteAddress, redirectToEditAddress } =
-    useContext(PeopleContext);
+  const {
+    people,
+    handleDeleteAddress,
+    redirectToEditAddress,
+    handleDeleteContato,
+    redirectToEditContato,
+  } = useContext(PeopleContext);
   const user = people && people[0];
 
   return (
@@ -44,8 +49,33 @@ function PeopleDetailComponent() {
             </div>
           );
         })}
+      <div>Contatos</div>
+      {user &&
+        user.contatos.map((contato) => {
+          return (
+            <div>
+              <ul>
+                <Li>Tipo: {contato.tipo}</Li>
+                <Li>Telefone: {contato.telefone}</Li>
+                <Li>Descrição: {contato.descricao}</Li>
+              </ul>
+              <CardButton>
+                <Button onClick={() => handleDeleteContato(contato.idContato)}>
+                  Deletar Contato
+                </Button>
+                <Button
+                  onClick={() => redirectToEditContato(contato.idContato)}
+                >
+                  Atualizar Contato
+                </Button>
+              </CardButton>
+            </div>
+          );
+        })}
     </Card>
   );
 }
 
 export default PeopleDetailComponent;
+
+//exbir contatos aqui
