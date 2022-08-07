@@ -19,17 +19,17 @@ function Menu() {
         ) : (
           <>
             <Item
-              img={<img src={pessoas} alt="" srcset="" />}
+              img={<img src={pessoas} alt="" />}
               name="Endereço"
               url="/endereco"
             />
             <Item
-              img={<img src={contatos} alt="" srcset="" />}
+              img={<img src={contatos} alt="" />}
               name="Pessoa"
               url="/pessoa"
             />
             <Item
-              img={<img src={pessoas} alt="" srcset="" />}
+              img={<img src={pessoas} alt=""  />}
               name="Contatos"
               url="/contatos"
             />

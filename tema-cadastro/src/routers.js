@@ -39,7 +39,7 @@ function Routers() {
             <Route path="/adicionar-contato/:id" element={<Contacts />} />
             <Route
               path="/editar-contato/:id"
-              element={<ContactFormComponent edit={true} />}
+              element={<Contacts edit={true} />}
             />
           </>
         )}

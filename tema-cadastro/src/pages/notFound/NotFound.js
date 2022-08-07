@@ -5,7 +5,7 @@ function NotFound() {
     <Card>
       <CardConteint>
         <h1>Esta pagina não existe</h1>
-        <img src={imagemNaoEncontrada} alt="" srcset="" />
+        <img src={imagemNaoEncontrada} alt=""  />
       </CardConteint>
     </Card>
   );

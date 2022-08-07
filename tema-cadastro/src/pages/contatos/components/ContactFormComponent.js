@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { Formik, Form, Field } from "formik";
+import { useContext } from "react";
+import { Formik, Field } from "formik";
 import { PeopleContext } from "../../../context/PeopleContext";
 import { postRequest, putRequest } from "./../../../api";
 import {
@@ -72,6 +72,7 @@ function ContactFormComponent({ edit, idContato, idPessoa }) {
                   name="telefone"
                   placeholder="telefone"
                 />
+
                 {errors.telefone && touched.telefone ? (
                   <erros>{errors.login}</erros>
                 ) : null}
@@ -82,10 +83,10 @@ function ContactFormComponent({ edit, idContato, idPessoa }) {
                 </Field>
                 <label htmlFor="descricao">descricao</label>
                 <Input
-                  onChange={handleChange}
-                  onBlur={handleBlur}
                   name="descricao"
                   type="descricao"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="descricao"
                 />
                 {errors.descricao && touched.descricao ? (

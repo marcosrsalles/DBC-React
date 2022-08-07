@@ -24,8 +24,8 @@ const PeopleProvider = ({ children }) => {
     setAddress(data);
   };
 
-  const getContactById = async (idEndereco) => {
-    const data = await getRequest(`/endereco/${idEndereco}`);
+  const getContactById = async (idContato) => {
+    const data = await getRequest(`/contato/${idContato}`);
     setContact(data);
   };
 
@@ -51,7 +51,7 @@ const PeopleProvider = ({ children }) => {
   };
 
   const handleUpdateContact = async (idContato) => {
-    await putRequest(`/contato/${contact.id}`, contact);
+    await putRequest(`/contato/${idContato}`, contact);
     window.location.href = "/pessoa";
   };
   const handleDetails = async (idPessoa) => {
@@ -90,8 +90,9 @@ const PeopleProvider = ({ children }) => {
     window.location.href = `/adicionar-contato/${idPessoa}`;
   };
 
-  const redirectToEditContato = (idContato) => {
-    window.location.href = `/editar-contato/${idContato}`;
+  const redirectToEditContato = async (contato) => {
+    setContact(contato);
+    window.location.href = `/editar-contato/${contato.idContato}`;
   };
 
   const redirectToList = () => {

@@ -64,7 +64,7 @@ function PeopleDetailComponent() {
                   Deletar Contato
                 </Button>
                 <Button
-                  onClick={() => redirectToEditContato(contato.idContato)}
+                  onClick={() => redirectToEditContato(contato)}
                 >
                   Atualizar Contato
                 </Button>

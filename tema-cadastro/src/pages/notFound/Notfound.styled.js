@@ -6,6 +6,7 @@ export const Card = styled.div`
 `;
 
 export const CardConteint = styled.div`
+  height: 100vh;
   color: white;
   display: flex;
   flex-direction: column;
