@@ -1,55 +1,87 @@
-import { useFormik } from "formik";
-import apiDbc from "../../api";
+import { Formik, Form } from "formik";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { handleLogin } from "../../store/actions/AuthAction";
+import * as Yup from "yup";
 
-function Login({ auth, dispatch }) {
-  const handleLogin = async (values) => {
-    try {
-      const { data } = await apiDbc.post("/auth", values);
-      const logado = {
-        type: "SET_LOGIN",
-        token: data,
-      };
-      dispatch(logado);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+import {
+  Button,
+  Card,
+  Input,
+  Label,
+  SignUp,
+  TitleSignUp,
+  ItemLink,
+  Title,
+  Small,
+  TitleH3,
+  Erros,
+  Background,
+} from "./login.styled";
 
-  console.log(auth);
+const SignupSchema = Yup.object().shape({
+  login: Yup.string()
+    .min(2, "Precisa de pelo menos 2 caracteres!")
+    .max(50, "Maximo de 50 caracteres!")
+    .required("Obrigatório!"),
+  senha: Yup.string()
+    .min(2, "Precisa de pelo menos 2 caracteres!!")
+    .max(50, "Maximo de 50 caracteres!")
+    .required("Obrigatório!"),
+});
 
-  const formik = useFormik({
-    initialValues: {
-      login: "",
-      senha: "",
-    },
-    onSubmit: (values) => {
-      handleLogin(values);
-    },
-  });
+function Login({ isAuth, dispatch }) {
+  const navigate = useNavigate();
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="login">Login</label>
-      <input
-        id="login"
-        name="login"
-        type="text"
-        placeholder="Digite seu login"
-        onChange={formik.handleChange}
-        value={formik.values.login}
-      />
-      <label htmlFor="senha">Senha</label>
-      <input
-        id="senha"
-        name="senha"
-        type="password"
-        placeholder="Digite sua senha"
-        onChange={formik.handleChange}
-        value={formik.values.senha}
-      />
-
-      <button type="submit">Entrar</button>
-    </form>
+    <>
+      <Background>
+        <Card>
+          <TitleH3>Dashboard Kit</TitleH3>
+          <Title>Log In to Dashboard Kit</Title>
+          <Small>Enter your email and password below</Small>
+          <Formik
+            initialValues={{ login: "", senha: "" }}
+            validationSchema={SignupSchema}
+            onSubmit={(values) => {
+              handleLogin(values, dispatch, navigate);
+            }}
+          >
+            {({ errors, touched, handleBlur, handleChange }) => {
+              return (
+                <Form>
+                  <Label htmlFor="login">Email</Label>
+                  <Input
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    name="login"
+                    placeholder="Login"
+                  />
+                  {errors.login && touched.login ? (
+                    <Erros>{errors.login}</Erros>
+                  ) : null}
+                  <Label htmlFor="password">Senha</Label>
+                  <Input
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    name="senha"
+                    type="password"
+                    placeholder="Senha"
+                  />
+                  {errors.senha && touched.senha ? (
+                    <Erros>{errors.senha}</Erros>
+                  ) : null}
+                  <Button type="submit">Entrar</Button>
+                  <SignUp>
+                    <TitleSignUp>Don’t have an account?</TitleSignUp>
+                    <ItemLink to="/usuarios">Sign up</ItemLink>
+                  </SignUp>
+                </Form>
+              );
+            }}
+          </Formik>
+        </Card>
+      </Background>
+    </>
   );
 }
 

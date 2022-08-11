@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { useEffect } from "react";
 //components
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -8,21 +8,48 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
 import Pessoa from "./pages/pessoa/Pessoa";
-import Register from "./pages/register/Register";
+import NotFound from "./pages/notFound/NotFound";
+import { isAuth } from "./store/actions/AuthAction";
+import { connect } from "react-redux";
+import FormPessoa from "./pages/pessoa/FormPessoa";
+import Registrar from "./pages/registrar/Registrar";
 
-function Routers() {
+function Routers({ auth, dispatch }) {
+  useEffect(() => {
+    isAuth(dispatch);
+  }, []);
+
+  // if (auth.isLoading) {
+  //   return <div>Loading</div>;
+  // }
+
   return (
     <BrowserRouter>
-      <Navbar />
+      {auth.isLogged ? <Navbar /> : ""}
+
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/pessoa" element={<Pessoa />} />
+        {auth.isLogged ? (
+          <>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/pessoa" element={<Pessoa />} />
+            <Route path="/cadastrar-pessoa" element={<FormPessoa />} />
+            <Route path="/editar-pessoa/:idPessoa" element={<FormPessoa />} />
+          </>
+        ) : (
+          <>
+            <Route path="/login" element={<Login />} />
+            <Route path="/registrar" element={<Registrar />} />
+          </>
+        )}
+        <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
 
-export default Routers;
+const mapStateToProps = (state) => ({
+  auth: state.authReducer.auth,
+});
+
+export default connect(mapStateToProps)(Routers);

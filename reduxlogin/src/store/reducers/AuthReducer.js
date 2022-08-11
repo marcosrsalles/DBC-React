@@ -1,12 +1,13 @@
 const INITIAL_STATE = {
   auth: {
     token: "",
+
     isLogged: false,
     isLoading: true,
   },
 };
 
-export default function authReducer(state = INITIAL_STATE, action) {
+function authReducer(state = INITIAL_STATE, action) {
   if (action.type === "SET_LOGIN") {
     return {
       auth: {
@@ -17,5 +18,16 @@ export default function authReducer(state = INITIAL_STATE, action) {
     };
   }
 
+  if (action.type === "SET_LOADING") {
+    return {
+      auth: {
+        ...state,
+        isLoading: action.isLoading,
+      },
+    };
+  }
+
   return state;
 }
+
+export default authReducer;
