@@ -5,6 +5,7 @@ import {
   handleEditPessoa,
   handleAddPessoa,
   handleDeletaPessoa,
+  handleAddEndereco,
 } from "../../store/actions/PessoaAction";
 import { useNavigate } from "react-router-dom";
 import { Card, RowHeader, Row, Button, ButtonCadastro } from "./Pessoa.styled";
@@ -53,6 +54,11 @@ function Pessoa({ pessoas, dispatch }) {
                 onClick={() => handleEditPessoa(pessoa.idPessoa, navigate)}
               >
                 Editar
+              </MenuItem>
+              <MenuItem
+                onClick={() => handleAddEndereco(pessoa.idPessoa, navigate)}
+              >
+                Add enreco
               </MenuItem>
             </Menu>
           </Row>

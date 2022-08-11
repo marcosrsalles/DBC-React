@@ -1,0 +1,107 @@
+import { Formik, Form, Field } from "formik";
+
+import axios from "axios";
+
+import { Card, Button, Title } from "./Endereco.styled";
+
+function Endereco({ edit, idEndereco, idPessoa }) {
+  async function onBlurCep(event, setFieldValue) {
+    let { value } = event.target;
+    const cep = value?.replace(/[^0-9]/g, "");
+    if (cep.length !== 8) {
+      return;
+    }
+
+    try {
+      const { data } = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      console.log(data);
+      setFieldValue("bairro", data.logradouro);
+      setFieldValue("cidade", data.localidade);
+      setFieldValue("logradouro", data.logradouro);
+      setFieldValue("estado", data.uf);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  return (
+    <Card>
+      <Title>Informe os dados do seu endereço</Title>
+      <Formik
+        enableReinitialize={true}
+        initialValues={{
+          cep: "",
+          logradouro: "",
+          numero: "",
+
+          bairro: "",
+          cidade: "",
+          estado: "",
+          pais: "",
+          complemento: "",
+          tipo: "",
+        }}
+        onSubmit={async (values) => {
+          //   await handleClick(values);
+        }}
+        setFieldValue={(field, value) => {
+          console.log(field, value);
+        }}
+      >
+        {({ setFieldValue }) => {
+          return (
+            <Form>
+              <>
+                <label>CEP*</label>
+                <Field
+                  name="cep"
+                  placeholder="Digite seu CEP"
+                  required
+                  onBlur={(event) => onBlurCep(event, setFieldValue)}
+                />
+              </>
+              <>
+                <label>Logradouro *</label>
+                <Field required name="logradouro" />
+              </>
+              <>
+                <label>Número *</label>
+                <Field required name="numero" placeholder="Digite o numero" />
+              </>
+              <>
+                <label>Complemento *</label>
+                <Field required name="complemento" />
+              </>
+              <>
+                <label>Bairro</label>
+                <Field required name="bairro" />
+              </>
+              <>
+                <label>Cidade *</label>
+                <Field required name="cidade" />
+              </>
+              <>
+                <label>Estado *</label>
+                <Field required name="estado" />
+              </>
+              <>
+                <label>Pais *</label>
+                <Field required name="pais" />
+              </>
+              <>
+                <label>Tipo *</label>
+                <Field required name="tipo" as="select">
+                  <option value="COMERCIAL">Comercial</option>
+                  <option value="RESIDENCIAL">Residencial</option>
+                </Field>
+              </>
+              <Button type="submit">Cadastrar</Button>
+            </Form>
+          );
+        }}
+      </Formik>
+    </Card>
+  );
+}
+
+export default Endereco;

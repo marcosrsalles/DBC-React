@@ -13,6 +13,7 @@ import { isAuth } from "./store/actions/AuthAction";
 import { connect } from "react-redux";
 import FormPessoa from "./pages/pessoa/FormPessoa";
 import Registrar from "./pages/registrar/Registrar";
+import Endereco from "./pages/endereco/Endereco";
 
 function Routers({ auth, dispatch }) {
   useEffect(() => {
@@ -34,6 +35,11 @@ function Routers({ auth, dispatch }) {
             <Route path="/pessoa" element={<Pessoa />} />
             <Route path="/cadastrar-pessoa" element={<FormPessoa />} />
             <Route path="/editar-pessoa/:idPessoa" element={<FormPessoa />} />
+            <Route path="/endereco" element={<Endereco />} />
+            <Route
+              path="/cadastrar-endereco/:idPessoa"
+              element={<Endereco />}
+            />
           </>
         ) : (
           <>

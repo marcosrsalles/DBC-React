@@ -64,3 +64,7 @@ export async function handleDeletaPessoa(idPessoa) {
     console.log(error);
   }
 }
+
+export async function handleAddEndereco(idPessoa, navigate) {
+  navigate(`/cadastrar-endereco/${idPessoa}`);
+}
